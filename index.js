@@ -28,6 +28,7 @@ function updateToken(url, tabId) {
       params[splitQuery[0]] = splitQuery[1];
       return params;
     }, {});
-    console.log(params.response_token);
+    chrome.storage.sync.set({"response_token": params.response_token}, function() {
+    });
   }
 }
