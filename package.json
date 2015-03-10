@@ -1,0 +1,16 @@
+{
+  "name": "chrome-cheers",
+  "version": "0.0.0",
+  "description": "Cheers from Chrome",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify index.js -o background.js"
+  },
+  "author": "Ricky Vetter",
+  "license": "ISC",
+  "dependencies": {
+    "url": "^0.10.3",
+    "browserify": "^9.0.3"
+  }
+}
