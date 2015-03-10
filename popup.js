@@ -11,14 +11,21 @@ function submitCheers(event) {
 	var email = document.getElementById("recipient").value.toLowerCase().trim();
 	var message = document.getElementById("message").value;
 	var isAnonymous = document.getElementById("anonymous").checked;
-	console.log(email, message, isAnonymous);
 	cheers.sendCheers({
 		token: token,
 		email: email,
 		message: message,
 		isAnonymous: isAnonymous ? 1 : 0
+	}, function(err){
+		if(err) {
+			renderStatus("Cheers could not be sent.");
+		}
+		else {
+			renderStatus("Cheers sent!");
+			window.setTimeout(renderStatus, 1000, token);
+		}
 	});
-	renderStatus("Cheers sent!");
+	
 }
 
 document.addEventListener('DOMContentLoaded', function() {

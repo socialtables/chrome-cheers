@@ -15,9 +15,7 @@ function handleTab(tab) {
 }
 
 function updateToken(url, tabId) {
-  console.log("ricky");
   var urlObject = urlParse.parse(url);
-  console.log(urlObject);
   var isTinyPulse = urlObject.host.indexOf("tinypulse.com") !== -1;
   var hasParams = urlObject.query;
   var hasResponseToken = hasParams && urlObject.query.indexOf("response_token") !== -1;

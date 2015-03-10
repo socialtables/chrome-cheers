@@ -51,7 +51,7 @@ var getEmailData = function(body) {
 };
 
 module.exports = Cheers = {
-    sendCheers: function(opts) {
+    sendCheers: function(opts, callback) {
         request(getURI + opts.token, function(err, res, body) {
             if (err) {
                 console.error(err);
@@ -72,6 +72,7 @@ module.exports = Cheers = {
                     console.log(err, body);
                     if (body.indexOf(opts.token) !== -1) {
                         console.log("Success!");
+                        callback(null);
                     }
                 });
             }
