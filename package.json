@@ -8,7 +8,7 @@
     "build": "browserify index.js -o extension/background.js && browserify popup.js -o extension/popup.js"
   },
   "author": "Ricky Vetter",
-  "license": "BSD",
+  "license": "BSD3",
   "dependencies": {
     "url": "^0.10.3",
     "browserify": "^9.0.3",
