@@ -30,10 +30,10 @@
     <script src="popup.js"></script>
   </head>
   <body>
-    <select name="recipient" multiple>
-      <!-- options will get populated here -->
-    </select>
-    <textarea name="message"></textarea>
+    <input id="recipient" name="recipient">
+    <textarea id="message" name="message"></textarea>
+    <input type="checkbox" id="anonymous" name="anonymous">
+    <button id="submit-cheers">Cheers!</button>
     <div id="status"></div>
   </body>
 </html>

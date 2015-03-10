@@ -29,16 +29,7 @@ function updateToken(url, tabId) {
       params[splitQuery[0]] = splitQuery[1];
       return params;
     }, {});
-    chrome.storage.sync.set({'response_token': params.response_token}, function() {
-      // Notify that we saved.
-      console.log('Settings saved');
-    });
-    console.log(params.response_token);
-  }
-  else {
-    chrome.storage.sync.get('response_token', function(token) {
-      // Notify that we saved.
-      console.log('recieved saved', token.response_token);
+    chrome.storage.sync.set({"response_token": params.response_token}, function() {
     });
   }
 }
