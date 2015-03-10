@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify index.js -o background.js"
+    "build": "browserify index.js -o extension/background.js"
   },
   "author": "Ricky Vetter",
   "license": "ISC",
   "dependencies": {
     "url": "^0.10.3",
+    "browserify": "^9.0.3"
+  },
+  "devDependencies": {
     "browserify": "^9.0.3"
   }
 }

@@ -30,13 +30,4 @@ function updateToken(url, tabId) {
     }, {});
     console.log(params.response_token);
   }
-
-  // var funding = findCompanyByHostAndPath(getHostAndPath(url));
-  // if (funding !== undefined) {
-  //   var formatted = formatDollars(funding[0]);
-  //   chrome.browserAction.setBadgeText({ text: formatted[0], tabId: tabId });
-  //   chrome.browserAction.setBadgeBackgroundColor({ color: formatted[1], tabId: tabId });
-  // } else {
-  //   chrome.browserAction.disable(tabId);
-  // }
 }
