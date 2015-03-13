@@ -3,7 +3,7 @@
 
   "name": "Cheers",
   "description": "Cheers from your browser - without searching your email.",
-  "version": "1.0",
+  "version": "1.2",
 
   "browser_action": {
     "default_icon": "mactough.png",
@@ -18,5 +18,10 @@
     "<all_urls>",
     "tabs",
     "storage"
-  ]
+  ],
+  "icons": {
+    "16": "mactough16.png",
+    "48": "mactough48.png",
+    "128": "mactough128.png"
+  }
 }
