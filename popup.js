@@ -1,4 +1,4 @@
-var cheers = require("./cheers");
+var cheers = require("tinypulse").Cheers;
 
 var token = null;
 

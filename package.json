@@ -9,14 +9,9 @@
   },
   "author": "Ricky Vetter",
   "license": "BSD3",
-  "dependencies": {
-    "url": "^0.10.3",
-    "browserify": "^9.0.3",
-    "ast-query": "^1.0.1",
-    "request": "^2.53.0",
-    "cheerio": "^0.18.0"
-  },
   "devDependencies": {
-    "browserify": "^9.0.3"
+    "browserify": "^9.0.3",
+    "tinypulse": "^1.0.0",
+    "url": "^0.10.3"
   }
 }
