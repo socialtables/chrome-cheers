@@ -1,6 +1,6 @@
 {
   "name": "chrome-cheers",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "description": "Cheers from Chrome",
   "main": "index.js",
   "scripts": {
@@ -13,5 +13,9 @@
     "browserify": "^9.0.3",
     "tinypulse": "^1.0.0",
     "url": "^0.10.3"
+  },
+  "dependencies": {
+    "typeahead": "^0.2.0",
+    "xhr": "^2.0.1"
   }
 }
