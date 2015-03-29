@@ -1,6 +1,6 @@
 {
   "name": "chrome-cheers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Cheers from Chrome",
   "main": "index.js",
   "scripts": {
