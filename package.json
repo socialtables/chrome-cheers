@@ -1,13 +1,13 @@
 {
   "name": "chrome-cheers",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Cheers from Chrome",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "browserify index.js -o extension/background.js && browserify popup.js -o extension/popup.js"
   },
-  "author": "Ricky Vetter",
+  "author": "Social Tables Engineering",
   "license": "BSD3",
   "devDependencies": {
     "browserify": "^9.0.3",
@@ -15,6 +15,8 @@
     "url": "^0.10.3"
   },
   "dependencies": {
+    "react": "^0.13.1",
+    "react-typeahead": "^1.0.1",
     "typeahead": "^0.2.0",
     "xhr": "^2.0.1"
   }

@@ -5,6 +5,11 @@ var Typeahead = require("typeahead");
 var token = null;
 var tokenText = "";
 var apiBase = "http://www.cheers.rocks";
+var recipients = [];
+var recipientElement;
+var messageElement;
+var anonymousElement;
+var submitElement;
 
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
@@ -12,15 +17,23 @@ function renderStatus(statusText) {
 
 function submitCheers(event) {
 	renderStatus("Sending ... ");
-	var email = document.getElementById("recipient").value.toLowerCase().trim();
-	var message = document.getElementById("message").value;
-	var isAnonymous = document.getElementById("anonymous").checked;
+    var recipientValue = document.getElementById("recipient").value.toLowerCase().trim();
+    // add recipient value to list if it might be a name
+    var emails = recipientValue && recipientValue.length > 0 ? recipients.concat(recipientValue) : recipients;
+	var message = messageElement.value;
+	var isAnonymous = anonymousElement.checked;
 	cheers.sendCheers({
 		token: token,
-		email: email,
+		email: emails,
 		message: message,
 		isAnonymous: isAnonymous ? 1 : 0
 	}, function(err){
+        recipientElement.value = "";
+        messageElement.value = "";
+        anonymousElement.checked = false;
+        recipients = [];
+        buildTokens();
+        
 		if(err) {
 			renderStatus("Cheers could not be sent.");
 		}
@@ -34,17 +47,54 @@ function submitCheers(event) {
 
 var setDisabledAllFields = function(isDisabled) {
 	var fields = [
-		document.getElementById("recipient"),
-		document.getElementById("message"),
-		document.getElementById("anonymous"),
-		document.getElementById("submit-cheers")
+		recipientElement,
+        messageElement,
+        anonymousElement,
+        submitElement
 	];
 	fields.forEach(function(field) {
 		field.disabled = isDisabled
 	})
-}
+};
+
+var buildTokens = function() {
+    var tokenDiv = document.getElementById("tokens");
+
+    var tokens = recipients.map(function(recipient) {
+        var index = recipient.indexOf("@") === -1 ? recipient.length : recipient.indexOf("@");
+        return "<div data-recipient='" + recipient + "' class='mui-btn mui-btn-primary token'>"+recipient.slice(0, index)+"</div>";
+    });
+    tokenDiv.innerHTML = tokens.join("");
+};
+
+var removeToken = function(event) {
+    var recipientToRemove = event.target.dataset.recipient;
+    recipients.splice(recipients.indexOf(recipientToRemove), 1);
+    buildTokens();
+};
+
+var clearElement = function() {
+    var isNotWhitespace = this.value.trim().length > 0;
+    if(isNotWhitespace && recipients.indexOf(this.value) === -1) {
+        recipients.push(this.value);
+        this.value = "";
+        buildTokens();
+    }
+};
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
+    recipientElement = document.getElementById("recipient");
+    messageElement = document.getElementById("message");
+    anonymousElement = document.getElementById("anonymous");
+    submitElement = document.getElementById("submit-cheers");
+
+    var tokenElement = document.getElementById("tokens");
+    // catch change events emitted by typeahead
+    recipientElement.addEventListener("change", clearElement, true);
+    tokenElement.addEventListener("click", removeToken);
+
   renderStatus("Fetching token and loading users...");
 
   chrome.storage.sync.get('response_token', function(response) {
@@ -68,12 +118,12 @@ document.addEventListener('DOMContentLoaded', function() {
     		tokenText = "Sending as: " + body.email + " (" + token + ")"
     		renderStatus(tokenText);
 
-    		var recipient = document.getElementById("recipient");
-    		var ta = Typeahead(recipient, {
+    		
+    		var ta = Typeahead(recipientElement, {
     		    source: body.possibleRecipients
     		});
 
-    		var button = document.getElementById("submit-cheers");
+    		var button = submitElement;
     		button.addEventListener("click", submitCheers);
     	});
     }
